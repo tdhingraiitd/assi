@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;Robotic Data Collection Dashboard&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react@18/umd/react.development.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/recharts@2.8.0/umd/Recharts.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="root"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script type="text/babel"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const { useState } = React;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } = Recharts;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const RoboticCollectionDashboard = () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const [activeTab, setActiveTab] = useState('overview');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>// Data for charts</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const robotEfficiencyData = [</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ robots: 1, days: 780, cost: 50000 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ robots: 2, days: 390, cost: 85000 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ robots: 3, days: 260, cost: 120000 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ robots: 4, days: 195, cost: 155000 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ robots: 5, days: 156, cost: 190000 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ robots: 6, days: 130, cost: 225000 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ robots: 8, days: 98, cost: 295000 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ robots: 10, days: 78, cost: 365000 }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const monthlyProgressData = [</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ month: 'Month 1', planned: 195, actual: 185, cumulative: 185 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ month: 'Month 2', planned: 195, actual: 205, cumulative: 390 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ month: 'Month 3', planned: 195, actual: 190, cumulative: 580 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ month: 'Month 4', planned: 195, actual: 200, cumulative: 780 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ month: 'Month 5', planned: 195, actual: 195, cumulative: 975 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ month: 'Month 6', planned: 195, actual: 195, cumulative: 1170 }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const qualityMetrics = [</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ metric: 'Data Accuracy', value: 97.8, target: 95 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ metric: 'Coverage Complete', value: 99.2, target: 98 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ metric: 'System Uptime', value: 94.5, target: 90 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ metric: 'Error Rate', value: 2.1, target: 5, inverse: true }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const zoneAllocation = [</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ zone: 'Zone 1', miles: 234, color: '#8884d8' },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ zone: 'Zone 2', miles: 187, color: '#82ca9d' },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ zone: 'Zone 3', miles: 298, color: '#ffc658' },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ zone: 'Zone 4', miles: 156, color: '#ff7c7c' },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ zone: 'Zone 5', miles: 295, color: '#8dd1e1' }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const costAnalysis = [</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ category: 'Robot Operations', amount: 120000, percentage: 45 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ category: 'Data Processing', amount: 45000, percentage: 17 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ category: 'Quality Assurance', amount: 35000, percentage: 13 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ category: 'Project Management', amount: 30000, percentage: 11 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ category: 'Infrastructure', amount: 25000, percentage: 9 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ category: 'Contingency', amount: 15000, percentage: 5 }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const TabButton = ({ id, label, active, onClick }) =&gt; (</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>React.createElement('button', {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>onClick: () =&gt; onClick(id),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>className: `px-6 py-3 rounded-t-lg font-medium transition-colors ${</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>active<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                  </span>? 'bg-blue-600 text-white border-b-2 border-blue-600'<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                  </span>: 'bg-gray-100 text-gray-600 hover:bg-gray-200'</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>}`</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}, label)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const MetricCard = ({ title, value, unit, trend, color = "blue" }) =&gt; (</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>React.createElement('div', { className: "bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>React.createElement('h3', { className: "text-sm font-medium text-gray-500 uppercase tracking-wide" }, title),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>React.createElement('div', { className: "mt-2 flex items-baseline" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement('p', { className: "text-3xl font-semibold text-gray-900" }, value),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement('p', { className: "ml-2 text-sm text-gray-500" }, unit)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>trend &amp;&amp; React.createElement('div', {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>className: `mt-2 flex items-center text-sm ${trend &gt; 0 ? 'text-green-600' : 'text-red-600'}`<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement('span', null, `${trend &gt; 0 ? '↗' : '↘'} ${Math.abs(trend)}%`),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement('span', { className: "ml-1 text-gray-500" }, 'vs target')</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>return React.createElement('div', { className: "min-h-screen bg-gray-50 p-6" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>React.createElement('div', { className: "max-w-7xl mx-auto" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>// Header</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>React.createElement('div', { className: "mb-8" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement('h1', { className: "text-3xl font-bold text-gray-900 mb-2" }, 'Robotic Data Collection Dashboard'),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement('p', { className: "text-gray-600" }, 'Autonomous Curb Mapping Project - Irvine, CA')</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>),</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>// Navigation Tabs</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>React.createElement('div', { className: "flex space-x-1 mb-6" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement(TabButton, { id: "overview", label: "Project Overview", active: activeTab === 'overview', onClick: setActiveTab }),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement(TabButton, { id: "efficiency", label: "Robot Efficiency", active: activeTab === 'efficiency', onClick: setActiveTab }),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement(TabButton, { id: "progress", label: "Progress Tracking", active: activeTab === 'progress', onClick: setActiveTab }),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement(TabButton, { id: "quality", label: "Quality Metrics", active: activeTab === 'quality', onClick: setActiveTab }),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement(TabButton, { id: "analysis", label: "Cost Analysis", active: activeTab === 'analysis', onClick: setActiveTab })</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>),</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>// Overview Tab Content</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>activeTab === 'overview' &amp;&amp; React.createElement('div', { className: "space-y-6" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                  </span>React.createElement(MetricCard, { title: "Total Distance", value: "1,170", unit: "miles", trend: 2.3 }),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                  </span>React.createElement(MetricCard, { title: "Active Robots", value: "5", unit: "units" }),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                  </span>React.createElement(MetricCard, { title: "Project Duration", value: "156", unit: "days", trend: -8.2 }),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                  </span>React.createElement(MetricCard, { title: "Completion Rate", value: "97.8", unit: "%", trend: 3.1 })</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement('div', { className: "bg-white rounded-lg shadow-md p-6" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                  </span>React.createElement('h2', { className: "text-xl font-semibold mb-4" }, 'Zone Allocation'),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                  </span>React.createElement('div', { className: "grid grid-cols-1 lg:grid-cols-2 gap-6" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>React.createElement(ResponsiveContainer, { width: "100%", height: 300 },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                      </span>React.createElement(PieChart, null,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>React.createElement(Pie, {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                          </span>data: zoneAllocation,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                          </span>cx: "50%",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                          </span>cy: "50%",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                          </span>innerRadius: 60,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                          </span>outerRadius: 120,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                          </span>paddingAngle: 2,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                          </span>dataKey: "miles"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                          </span>zoneAllocation.map((entry, index) =&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>React.createElement(Cell, { key: `cell-${index}`, fill: entry.color })</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                          </span>)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>React.createElement(Tooltip, { formatter: (value) =&gt; [`${value} miles`, 'Distance'] }),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>React.createElement(Legend, null)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                      </span>)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>React.createElement('div', { className: "space-y-3" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                      </span>zoneAllocation.map((zone, index) =&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>React.createElement('div', { key: index, className: "flex items-center justify-between p-3 bg-gray-50 rounded" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                          </span>React.createElement('div', { className: "flex items-center" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>React.createElement('div', { className: "w-4 h-4 rounded mr-3", style: {backgroundColor: zone.color} }),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>React.createElement('span', { className: "font-medium" }, zone.zone)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                          </span>),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                          </span>React.createElement('span', { className: "text-gray-600" }, `${zone.miles} miles`)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                      </span>)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                  </span>)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>),</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>// Add other tab contents here following the same pattern</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>activeTab === 'efficiency' &amp;&amp; React.createElement('div', { className: "bg-white rounded-lg shadow-md p-6" },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement('h2', { className: "text-xl font-semibold mb-4" }, 'Robot Efficiency Analysis'),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>React.createElement('p', { className: "text-gray-600" }, 'Chart showing relationship between robot count and project completion time.')</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ReactDOM.render(React.createElement(RoboticCollectionDashboard), document.getElementById('root'));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
